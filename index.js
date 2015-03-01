@@ -11,7 +11,7 @@ exports.registerRoute = function (hook_name, args, cb) {
                 padManager.listAllPads(callback)
             },
             function(data, callback){
-                var timestamp = (new Date).getTime(),
+                var timestamp = (new Date).getTime() / 1000 | 0,
                     padsCount = data.padIDs.length;
                 res.send('{ timestamp: '+timestamp+', padsCount: '+padsCount+' }');
                 callback();

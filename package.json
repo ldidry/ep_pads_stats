@@ -1,0 +1,21 @@
+
+{
+    "name": "ep_pads_stats",
+    "version": "0.0.1",
+    "description": "Adds an url to get some stats about the Etherpad lite instance",
+    "author": {
+        "name": "Luc Didry",
+        "email": "luc@didry.org",
+        "url": "https://fiat-tux.fr"
+    },
+    "dependencies": {
+    },
+    "peerDependencies":{
+        "ep_public_view":"*"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "https://git.framasoft.org/luc/ep_pads_stats.git"
+    }
+}
+

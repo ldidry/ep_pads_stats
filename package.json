@@ -1,7 +1,7 @@
 
 {
     "name": "ep_pads_stats",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Adds an url to get some stats about the Etherpad lite instance",
     "author": {
         "name": "Luc Didry",

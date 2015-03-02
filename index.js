@@ -13,7 +13,8 @@ exports.registerRoute = function (hook_name, args, cb) {
             function(data, callback){
                 var timestamp = (new Date).getTime() / 1000 | 0,
                     padsCount = data.padIDs.length;
-                res.send('{ timestamp: '+timestamp+', padsCount: '+padsCount+' }');
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.send('{"timestamp":'+timestamp+',"padsCount": '+padsCount+'}');
                 callback();
             }
         ]);

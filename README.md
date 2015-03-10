@@ -2,6 +2,12 @@
 
 Just install the plugin and go to http://pad.example.org/stats.json.
 
+The result is a json string like:
+
+```
+{"timestamp": 1425992868, "padsCount": 2, "blankPads": 1}
+```
+
 # License
 
 Copyright 2015 Luc Didry

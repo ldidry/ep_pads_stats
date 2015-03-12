@@ -8,6 +8,11 @@ The result is a json string like:
 {"timestamp": 1425992868, "padsCount": 2, "blankPads": 1}
 ```
 
+The `blankPads` counter may be inaccurate at Etherpad startup since the plugin fills a cache asynchronously.  
+After the startup, the cache is updated in real time (on pad creation, update or deletion) so it's always accurate.
+
+If you have too many pads, Etherpad may not be able to list all pads. As this plugin relies on listAllPads API call, it will fail.
+
 # License
 
 Copyright 2015 Luc Didry

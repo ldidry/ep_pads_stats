@@ -14,7 +14,7 @@
     },
     "repository" : {
         "type" : "git",
-        "url" : "https://git.framasoft.org/luc/ep_pads_stats.git"
+        "url" : "https://framagit.org/fiat-tux/etherpad/ep_pads_stats.git"
     }
 }
 

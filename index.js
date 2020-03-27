@@ -1,12 +1,23 @@
 var API        = require('ep_etherpad-lite/node/db/API'),
-    ERR        = require('ep_etherpad-lite/node_modules/async-stacktrace'),
     async      = require('ep_etherpad-lite/node_modules/async');
+
+var epVersion = parseFloat(require('ep_etherpad-lite/package.json').version);
+var usePromises = epVersion >= 1.8
+var getRevisionsCount
+
+if (usePromises) {
+  getRevisionsCount = callbackify1(API.getRevisionsCount)
+  listAllPads = callbackify0(API.listAllPads)
+} else {
+  getRevisionsCount = API.getRevisionsCount
+  listAllPads = API.listAllPads
+}
 
 // What about a little cache variable :-)
 var blankPads = {};
 var q = async.queue(function (pad, cb) {
     if (blankPads[pad] === undefined) {
-        API.getRevisionsCount(pad, cb);
+        getRevisionsCount(pad, cb);
     } else {
         cb && cb();
     }
@@ -46,18 +57,35 @@ exports.padUpdate = function (hook_name, context, cb) {
 // At startup
 exports.registerRoute = function (hook_name, args, cb) {
     // Let's fill the blankPads var
-    API.listAllPads(function(err, data) {
+    listAllPads(function(err, data) {
         async.each(data.padIDs, function(pad, cb) {
             q.push(pad, cb);
         });
     });
     // Answer to the route
     args.app.get('/stats.json', function(req, res) {
-        API.listAllPads(function(err, data) {
+        listAllPads(function(err, data) {
             var timestamp = (new Date).getTime() / 1000 | 0;
             res.setHeader('Content-Type', 'application/json');
             res.send('{"timestamp": '+timestamp+', "padsCount": '+data.padIDs.length+', "blankPads": '+Object.keys(blankPads).length+'}');
             cb && cb();
         });
     });
+};
+
+function wrapPromise (p, cb) {
+  return p.then(function (result) { cb(null, result); })
+    .catch(function(err) { cb(err); });
+}
+
+function callbackify1 (fun) {
+  return function (arg1, cb) {
+    return wrapPromise(fun(arg1), cb);
+  };
+};
+
+function callbackify0 (fun) {
+  return function (cb) {
+    return wrapPromise(fun(), cb);
+  };
 };

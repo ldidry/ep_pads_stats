@@ -1,20 +1,16 @@
-
 {
     "name": "ep_pads_stats",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "Adds an url to get some stats about the Etherpad instance",
     "author": {
         "name": "Luc Didry",
         "email": "luc@didry.org",
         "url": "https://fiat-tux.fr"
     },
-    "dependencies": {
-    },
-    "peerDependencies":{
-    },
-    "repository" : {
-        "type" : "git",
-        "url" : "https://framagit.org/fiat-tux/etherpad/ep_pads_stats.git"
+    "dependencies": {},
+    "peerDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "https://framagit.org/fiat-tux/etherpad/ep_pads_stats.git"
     }
 }
-

@@ -68,9 +68,9 @@ exports.registerRoute = function (hook_name, args, cb) {
             var timestamp = (new Date).getTime() / 1000 | 0;
             res.setHeader('Content-Type', 'application/json');
             res.send('{"timestamp": '+timestamp+', "padsCount": '+data.padIDs.length+', "blankPads": '+Object.keys(blankPads).length+'}');
-            cb && cb();
         });
     });
+    cb && cb();
 };
 
 function wrapPromise (p, cb) {

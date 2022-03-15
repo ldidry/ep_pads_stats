@@ -11,6 +11,6 @@
     "peerDependencies": {},
     "repository": {
         "type": "git",
-        "url": "https://framagit.org/fiat-tux/etherpad/ep_pads_stats.git"
+        "url": "https://framagit.org/framasoft/Etherpad/ep_pads_stats.git"
     }
 }

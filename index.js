@@ -36,7 +36,7 @@ exports.padLoad = function (hook_name, context, cb) {
     cb && cb();
 }
 exports.padRemove = function (hook_name, context, cb) {
-    var padId = context.padID;
+    var padId = context.pad.id;
     if (blankPads[padId] !== undefined) {
         delete blankPads[padId];
     }
